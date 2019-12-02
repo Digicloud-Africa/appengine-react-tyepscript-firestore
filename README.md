@@ -1,7 +1,7 @@
-# App Engine TypeScript sample
+# App Engine React TypeScript Firestore sample
 
-This sample provides an example of how to compile TypeScript files while
-deploying to App Engine.
+This sample provides an example of how to run a React based TypeScript project
+deploying to App Engine and using firestore for managing state.
 
 The `gcp-build` NPM script is used to trigger the TypeScript compilation
 process. This step happens automatically when deploying to App Engine, but must

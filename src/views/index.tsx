@@ -1,12 +1,7 @@
 import * as React from 'react';
+import Item, {item} from "./item";
 
-export interface item {
-    description: string;
-    price: number;
-    category: string;
-}
-
-export default class Item extends React.Component<item>{
+export default class Main extends React.Component<item>{
 
     state: item;
 
@@ -20,7 +15,8 @@ export default class Item extends React.Component<item>{
         return (
             <div>
                 <form>
-                    <Item ></Item>
+                    <Item description={this.state.description} category={this.state.category} price={this.state.price}></Item>
+                    <button type="submit">add</button>
                 </form>
             </div>
         );

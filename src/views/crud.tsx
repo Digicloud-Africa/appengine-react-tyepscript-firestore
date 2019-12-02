@@ -1,11 +1,15 @@
 import * as React from 'react';
 
-export default class Crud extends React.Component<T>{
+interface crud{
+    new: boolean;
+    editable: boolean;
+    deletable: boolean;
+    child: any;
+}
+export default class Crud extends React.Component<crud>{
 
-    state: T;
-    addable: boolean = false;
-    editable: boolean = false;
-    deletable: boolean = false;
+    state: crud;
+
 
     constructor(){
         super();
@@ -16,15 +20,15 @@ export default class Crud extends React.Component<T>{
         return (
             <form>
                 <div>
-                    <label>Item Description</label>
-                    <input type="text" placeholder="input new item" value={this.state.description} />
-                    <label>Item Category</label>
-                    <input type="text" placeholder="input new item" value={this.state.category} />
-                    <label>Item Price (ZAR)</label>
-                    <input type="number" placeholder="input new item" value={this.state.price} />
+                    {this.state.child}
+                    {this.isNew()}
                     <button>add</button>
                 </div>
             </form>
         );
+    }
+
+    private isNew() {
+
     }
 }
