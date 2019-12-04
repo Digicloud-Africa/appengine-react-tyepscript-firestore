@@ -4,7 +4,7 @@ export const register = ( app: express.Application ) => {
 
     // define a route handler for the default home page
     app.get( "/", ( req: any, res ) => {
-        res.render( "index" );
+        res.render( "index", {description: "dfvsd", category: "asvasd", price: 80});
     } );
 
     // define a secure route handler for the login page that redirects to /guitars

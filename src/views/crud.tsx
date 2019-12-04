@@ -1,34 +1,37 @@
-import * as React from 'react';
+import * as React from "react";
 
-interface crud{
+interface ICrud {
     new: boolean;
     editable: boolean;
     deletable: boolean;
-    child: any;
+    view: string;
+    onAdd: any ;
+    child: React.Component;
 }
-export default class Crud extends React.Component<crud>{
 
-    state: crud;
+export default class Crud extends React.Component<ICrud> {
 
+    public state: ICrud;
 
-    constructor(){
+    constructor(props: ICrud) {
         super();
+        this.state = props;
     }
 
-
-    render () {
+    public render() {
         return (
             <form>
-                <div>
+                <div className={this.state.view}>
                     {this.state.child}
-                    {this.isNew()}
-                    <button>add</button>
+                    {this.addNewButton()}
                 </div>
             </form>
         );
     }
 
-    private isNew() {
-
+    private addNewButton() {
+        if (this.state.new) {
+            return (<button onClick={this.state.onAdd}>Add</button>);
+        }
     }
 }

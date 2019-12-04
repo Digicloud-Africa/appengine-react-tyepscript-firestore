@@ -1,30 +1,29 @@
-import * as React from 'react';
+import * as React from "react";
 
-export interface item {
+export interface IItem {
     description: string;
     price: number;
     category: string;
 }
 
-export default class Item extends React.Component<item>{
+export default class Item extends React.Component<IItem> {
 
-    state: item;
+    public state: IItem;
 
-    constructor(){
+    constructor(props: IItem) {
         super();
-        this.state = {description:'', category:'', price: 0};
+        this.state = props;
     }
 
-
-    render () {
+    public render() {
         return (
                 <div>
                     <label>Item Description</label>
-                    <input type="text" placeholder="input new item" value={this.state.description} />
+                    <input type="text" placeholder="input new item" defaultValue={this.state.description} />
                     <label>Item Category</label>
-                    <input type="text" placeholder="input new item" value={this.state.category} />
+                    <input type="text" placeholder="input new item" defaultValue={this.state.category} />
                     <label>Item Price (ZAR)</label>
-                    <input type="number" placeholder="input new item" value={this.state.price} />
+                    <input type="number" placeholder="input new item" defaultValue={this.state.price} />
                 </div>
         );
     }

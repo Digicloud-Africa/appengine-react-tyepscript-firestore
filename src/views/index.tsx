@@ -1,24 +1,43 @@
-import * as React from 'react';
-import Item, {item} from "./item";
+import * as React from "react";
+import Item, {IItem} from "./item";
+import Crud from "./crud";
+import Layout from "./layouts"
 
-export default class Main extends React.Component<item>{
+export default class Main extends React.Component<IItem> {
 
-    state: item;
+    public state: IItem;
 
-    constructor(){
-        super();
-        this.state = {description:'', category:'', price: 0};
+    constructor(props: IItem) {
+        super(props);
+        this.state = props;
     }
 
+    public componentDidMount() {
+        console.log("loading scripts");
+    }
 
-    render () {
-        return (
-            <div>
-                <form>
-                    <Item description={this.state.description} category={this.state.category} price={this.state.price}></Item>
-                    <button type="submit">add</button>
-                </form>
-            </div>
+    public render() {
+
+            return (
+            <Layout title={"SSR PWA"} content={this.getCrud()}>
+            </Layout>
         );
+    }
+
+    private getCrud() {
+        return (
+            <Crud view="level" child={this.getItem()} deletable={true} editable={true} new={true}
+                     onAdd={this.componentDidMount}>
+            </Crud>
+        );
+    }
+
+    getItem(){
+        return (
+            <Item description={this.state.description}
+                  category={this.state.category}
+                  price={this.state.price}>
+            </Item>
+        )
     }
 }

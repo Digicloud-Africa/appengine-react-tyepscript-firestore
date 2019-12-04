@@ -1,28 +1,31 @@
-import * as express from 'express';
-import * as itemRouter from './routes/item';
+import * as express from "express";
+import * as itemRouter from "./routes/item";
 
 class App {
+
     public express;
 
-    constructor () {
+    constructor() {
         this.express = express();
-        this.express.set('views', __dirname + '/views');
-        this.express.set('view engine', 'tsx');
-        this.express.engine('tsx', require('express-react-views').createEngine());
+        this.express.set("views", __dirname + "/views");
+        this.express.set("view engine", "tsx");
+        this.express.engine("tsx", require("express-react-views").createEngine({
+            defaultLayout: 'index'
+        }));
         itemRouter.register(this.express);
 
-        //this.mountRoutes();
+        // this.mountRoutes();
     }
 
-    private mountRoutes (): void {
+    private mountRoutes(): void {
         const router = express.Router();
-        router.get('/', (req, res) => {
+        router.get("/", (req, res) => {
             res.json({
-                message: 'Hello Lies!'
-            })
+                message: "Hello Lies!",
+            });
         });
-        this.express.use('/', router);
+        this.express.use("/", router);
     }
 }
 
-export default new App().express
+export default new App().express;
