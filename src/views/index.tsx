@@ -1,7 +1,7 @@
 import * as React from "react";
-import Item, {IItem} from "./item";
 import Crud from "./crud";
-import Layout from "./layouts"
+import Item, {IItem} from "./item";
+import Layout from "./layouts";
 
 export default class Main extends React.Component<IItem> {
 
@@ -24,20 +24,21 @@ export default class Main extends React.Component<IItem> {
         );
     }
 
+    public getItem() {
+        return (
+            <Item description={this.state.description}
+                  category={this.state.category}
+                  price={this.state.price}
+                  loggedIn={this.state.loggedIn}>
+            </Item>
+        );
+    }
+
     private getCrud() {
         return (
             <Crud view="level" child={this.getItem()} deletable={true} editable={true} new={true}
                      onAdd={this.componentDidMount}>
             </Crud>
         );
-    }
-
-    getItem(){
-        return (
-            <Item description={this.state.description}
-                  category={this.state.category}
-                  price={this.state.price}>
-            </Item>
-        )
     }
 }

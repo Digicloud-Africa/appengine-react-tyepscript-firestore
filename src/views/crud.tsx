@@ -16,6 +16,7 @@ export default class Crud extends React.Component<ICrud> {
     constructor(props: ICrud) {
         super();
         this.state = props;
+        console.log(props);
     }
 
     public render() {

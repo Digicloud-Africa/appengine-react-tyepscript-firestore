@@ -1,5 +1,5 @@
 {
-  "name": "groza-pwa",
+  "name": "ssr-pwa",
   "description": "An example TypeScript app running on Google App Engine.",
   "version": "0.0.1",
   "private": true,
@@ -18,11 +18,15 @@
     "deploy": "gcloud app deploy"
   },
   "dependencies": {
+    "@google-cloud/connect-firestore": "^1.0.5",
+    "@google-cloud/firestore": "^2.6.1",
     "@types/node": "^12.12.12",
     "@types/react": "^16.0.21",
     "bulma": "^0.8.0",
     "express": "^4.16.3",
     "express-react-views": "^0.11.0",
+    "express-session": "^1.17.0",
+    "googleapis": "^45.0.0",
     "nodemon": "^2.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

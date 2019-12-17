@@ -1,5 +1,8 @@
+import {FirestoreStore } from "@google-cloud/connect-firestore";
+import {Firestore} from "@google-cloud/firestore";
 import * as express from "express";
-import * as itemRouter from "./routes/item";
+import * as session from "express-session";
+import {Item} from "./routes/item";
 
 class App {
 
@@ -9,10 +12,22 @@ class App {
         this.express = express();
         this.express.set("views", __dirname + "/views");
         this.express.set("view engine", "tsx");
+        this.express.use(
+            session({
+                resave: false,
+                saveUninitialized: true,
+                secret: "my-secret",
+                store: new FirestoreStore({
+                    dataset: new Firestore({
+                        kind: "express-sessions",
+                    }),
+                }),
+            }),
+        );
         this.express.engine("tsx", require("express-react-views").createEngine({
-            defaultLayout: 'index'
+            defaultLayout: "index",
         }));
-        itemRouter.register(this.express);
+        const itmeRouter = new Item(this.express);
 
         // this.mountRoutes();
     }
