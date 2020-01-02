@@ -12,6 +12,7 @@ class App {
         this.express = express();
         this.express.set("views", __dirname + "/views");
         this.express.set("view engine", "tsx");
+        console.log("loading");
         this.express.use(
             session({
                 resave: false,
@@ -24,6 +25,7 @@ class App {
                 }),
             }),
         );
+        console.log("loaded");
         this.express.engine("tsx", require("express-react-views").createEngine({
             defaultLayout: "index",
         }));

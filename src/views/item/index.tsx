@@ -20,8 +20,10 @@ export default class Item extends React.Component<IItem> {
 
     public render() {
         if (!this.state.loggedIn) {
+            console.log("about to load");
             const auth = new GoogleOAuth();
             const url = auth.urlGoogle();
+            console.log("about to loaded");
             return (
                 <div>
                     <a href={url}>Login with Google</a>

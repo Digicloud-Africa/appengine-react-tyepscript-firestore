@@ -1,22 +1,35 @@
-const fs = require('fs');
+import {Storage} from "@google-cloud/storage";
 
-const dotEnvExists = fs.existsSync('.env');
+export class GetEnv {
+    constructor() {
 
-if (dotEnvExists) {
-    console.log('loaded local env file.');
-} else {
+        const fs = require("fs");
+        const dotEnvExists = fs.existsSync(".env");
+        const dotenv = require("dotenv");
 
-    const {Storage} = require('@google-cloud/storage');
-    const storage = new Storage();
-    const bucketName = `envvars-${process.env.GCLOUD_PROJECT}`;
+        if (dotEnvExists) {
+            console.log("loaded local env file.");
+        } else {
+            console
+                .log(
+                    "loading production env file. "
+                );
 
-    storage
-        .bucket(bucketName)
-        .file('.env')
-        .download({destination: '.env'})
-        .then(() => {
-            console.log('loaded env file.');
-        }).catch(e => {
-        console.error(`Failed to load .env file: ${JSON.stringify(e, undefined, 2)}`);
-    });
+            const storage = new Storage();
+
+            const bucketName = `envvars-groza-260013`;
+
+            storage
+                .bucket(bucketName)
+                .file(".env")
+                .download({destination: ".env"})
+                .then(() => {
+                    console.log("loaded remote env file.");
+                }).catch((e) => {
+                console.error(`Failed to load .env file from bucket envvars-${process.env.GOOGLE_CLOUD_PROJECT} : ${JSON.stringify(e, undefined, 2)}`);
+            });
+        }
+    }
 }
+
+const getEnv = new GetEnv();

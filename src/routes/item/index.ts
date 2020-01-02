@@ -1,4 +1,4 @@
-import {Firestore} from "@google-cloud/firestore";
+import {Firestore, Timestamp} from "@google-cloud/firestore";
 import * as express from "express";
 import GoogleOAuth from "../auth/util";
 
@@ -29,10 +29,10 @@ export class Item {
                 console.log(req.query.code);
                 const auth = new GoogleOAuth();
                 auth.getGoogleAccountFromCode(req.query.code).then((user) => {
-                    console.log(user);
+                    console.log("this is the reply" + user);
                     const document = this.firestore.collection("users").doc(user.email);
                     document.set({
-                        createDate: Firestore.Timestamp.fromDate(new Date()),
+                        createDate: Timestamp.fromDate(new Date()),
                         googleUserDetails: user.details,
                     });
                     req.session.user = user;

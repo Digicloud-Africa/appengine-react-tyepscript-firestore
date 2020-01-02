@@ -64,6 +64,7 @@ export default class GoogleOAuth {
      * Create the google auth object which gives us access to talk to google's apis.
      */
     private createConnection() {
+        console.log("keep at it" + this.googleConfig.redirect + this.env);
         return new google.auth.OAuth2(
             this.googleConfig.clientId,
             this.googleConfig.clientSecret,
