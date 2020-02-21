@@ -6,7 +6,7 @@ interface ICrud {
     deletable: boolean;
     view: string;
     onAdd: any ;
-    child: React.Component;
+    child: JSX.Element;
 }
 
 export default class Crud extends React.Component<ICrud> {
@@ -14,7 +14,7 @@ export default class Crud extends React.Component<ICrud> {
     public state: ICrud;
 
     constructor(props: ICrud) {
-        super();
+        super(props);
         this.state = props;
         console.log(props);
     }

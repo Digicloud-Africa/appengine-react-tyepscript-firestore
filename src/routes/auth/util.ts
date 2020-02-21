@@ -7,17 +7,24 @@ export default class GoogleOAuth {
         "https://www.googleapis.com/auth/userinfo.profile",
     ];
 
-    private env = process.env.RUNTIME_ENV ? process.env.RUNTIME_ENV : "prod";
+    private env = process.env.RUNTIME_ENV ? process.env.RUNTIME_ENV : "dev";
 
     private auth;
 
     private secrets = require("../../../auth/secrets.json");
 
+    public constructor() {
+        console.log("yo yo" + process.env.RUNTIME_ENV);
+
+    }
+
+
     private googleConfig = {
         clientId: this.secrets.googleConfig.clientId,
         // will look something like "220097495841-33o01nsd0f9vkbtkunk0s4a39nboptii.apps.googleusercontent.com",
         clientSecret: this.secrets.googleConfig.clientSecret, // will look something like "eKBfvHNDTsBKMPUyIxo5wX_8",
-        redirect: this.env === "dev" ? "http://localhost:3000/login" : this.secrets.googleConfig.prodEnvUrl + "/login",
+        redirect: "http://localhost:3000/login" ,
+        //redirect: this.env === "dev" ? "http://localhost:3000/login" : this.secrets.googleConfig.prodEnvUrl + "/login",
         // this must match your google auth api settings
     };
 

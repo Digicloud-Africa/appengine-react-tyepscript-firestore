@@ -3,6 +3,7 @@ import {Firestore} from "@google-cloud/firestore";
 import * as express from "express";
 import * as session from "express-session";
 import {Item} from "./routes/item";
+import * as path from "path";
 
 class App {
 
@@ -25,6 +26,8 @@ class App {
                 }),
             }),
         );
+        //this.express.use(express.static(path.join(__dirname, 'public')));
+        this.express.use(express.static(__dirname + "/public"));
         console.log("loaded");
         this.express.engine("tsx", require("express-react-views").createEngine({
             defaultLayout: "index",

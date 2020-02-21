@@ -19,8 +19,7 @@ export default class Main extends React.Component<IItem> {
     public render() {
 
             return (
-            <Layout title={"SSR PWA"} content={this.getCrud()}>
-            </Layout>
+            <Layout title={"SSR PWA"} content={this.getCrud()}/>
         );
     }
 

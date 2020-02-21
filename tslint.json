@@ -2,5 +2,11 @@
   "extends": "tslint:recommended",
   "rules": {
     "no-console": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "bin",
+      "node_modules"
+    ]
   }
 }

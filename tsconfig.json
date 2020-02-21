@@ -2,13 +2,19 @@
   "compilerOptions": {
     "target": "es6",
     "module": "CommonJS",
+    "outDir": "./dist",
+    "mapRoot": "./dist",
+    "sourceMap": true,
+    "sourceRoot": "./src",
     "jsx": "react",
     "moduleResolution": "node",
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "lib": ["ES6"]
+    "lib": ["ES6"],
+    "types": []
   },
   "include": [
     "src/**/*",
-    "node_modules/typescript/lib/lib.dom.d.ts"
+    "node_modules/typescript/lib/lib.dom.d.ts",
   ]
 }
